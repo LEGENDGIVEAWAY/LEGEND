@@ -25,5 +25,5 @@ jobs:
         run: |
           pip install requests
 
-      - name: Run LEGEND.py
+      - name: Run soul.py
         run: ls && python3 new.py
