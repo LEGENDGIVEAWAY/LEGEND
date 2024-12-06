@@ -1,25 +1,26 @@
 language: python
-dist: focal  # Use Ubuntu 20.04 (Focal Fossa)
 python:
-  - "3.10"   # Specify Python version
+  - "3.9"  # Specify the Python version
 
-before_install:
-  # Update system and install required packages
-  - sudo apt-get update
-  - sudo apt-get install -y gcc
-
+# Install dependencies
 install:
-  # Upgrade pip and install required Python dependencies
-  - python3 -m pip install --upgrade pip
-  - python3 -m pip python3-telegram-bot
-  - python3 -m pip install telebot pymongo aiohttp
+  - pip install -r requirements.txt
 
-before_script:
-  # Compile soul.c if it exists
-  - if [ -f soul.c ]; then gcc soul.c -o soul -lpthread; fi
+# Environment variables (replace these with actual values)
+env:
+  global:
+    - TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+    - UPI_ID=your_upi_id
+    - ALLOWED_USER_ID=1441704343
 
+# Script to run
 script:
-  # Run the Python script
-  - chmod +x * && lscpu && python3 LEGEND.py
-  
-                               
+  - python LEGEND.py
+
+# Notifications (optional)
+notifications:
+  email:
+    recipients:
+      - your-email@example.com
+    on_success: never
+    on_failure: always
